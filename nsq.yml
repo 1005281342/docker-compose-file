@@ -1,0 +1,35 @@
+version: '2'
+services:
+  nsqlookupd:
+    image: nsqio/nsq
+    command: /nsqlookupd
+    ports:
+      - "0.0.0.0:4160:4160"
+      - "0.0.0.0:4161:4161"
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "1g"
+  nsqd:
+    image: nsqio/nsq
+    command: /nsqd --broadcast-address=203.195.196.216 --lookupd-tcp-address=nsqlookupd:4160 
+    depends_on:
+      - nsqlookupd
+    ports:
+      - "0.0.0.0:4150:4150"
+      - "0.0.0.0:4151:4151"
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "1g"
+  nsqadmin:
+    image: nsqio/nsq
+    command: /nsqadmin --lookupd-http-address=nsqlookupd:4161
+    depends_on:
+      - nsqlookupd  
+    ports:
+      - "0.0.0.0:4171:4171"
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "1g"
