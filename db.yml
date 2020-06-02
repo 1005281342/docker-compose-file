@@ -13,9 +13,6 @@ services:
     # 目录映射
     - "${REDIS_DIR}/conf:/usr/local/etc/redis"
     - "${REDIS_DIR}/data:/data"
-    command:
-      # 执行的命令
-      redis-server
 
   mysql:
     image: mysql:latest
