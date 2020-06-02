@@ -1,0 +1,14 @@
+# docker-compose.yml文件的版本
+version: "2"
+# 管理的服务
+services:
+  redis:
+    # 指定镜像
+    image: redislabs/rebloom:latest
+    ports:
+    # 端口映射
+    - 6380:6379
+    volumes:
+    # 目录映射
+    - "${REDIS_DIR}/conf:/usr/local/etc/redisbloom"
+    - "${REDIS_DIR}/data:/data"
