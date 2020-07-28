@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  etcd:
+    container_name: etcd0
+    image: registry.cn-hangzhou.aliyuncs.com/coreos_etcd/etcd:v3
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    environment:
+      - TZ=CST-8
+      - LANG=zh_CN.UTF-8
+    command: 
+      /usr/local/bin/etcd
+      -name etcd0 
+      -data-dir /etcd-data
+      -advertise-client-urls http://${host_ip}:2379
+      -listen-client-urls http://0.0.0.0:2379
+      -initial-cluster-token docker-etcd 
+      -initial-cluster-state new 
+    volumes:
+      - "/data/conf/etcd/data:/etcd-data"
+  
