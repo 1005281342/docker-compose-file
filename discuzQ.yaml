@@ -1,0 +1,20 @@
+# docker-compose.yml文件的版本
+version: "2"
+# 管理的服务
+services:
+  discuzQ:
+    # 指定镜像
+    image: ccr.ccs.tencentyun.com/discuzq/dzq:latest
+    ports:
+    # 端口映射
+    - 80:80
+    - 443:443
+    ulimits:
+      nproc: 65535
+      nofile:
+       soft: 20000
+       hard: 40000
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "1g"
