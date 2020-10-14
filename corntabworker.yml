@@ -1,0 +1,40 @@
+# docker-compose.yml文件的版本
+version: "2"
+# 管理的服务
+services:
+  worker1:
+    # 指定镜像
+    image: ccr.ccs.tencentyun.com/corntab/worker:v1.0.0
+    ulimits:
+      nproc: 65535
+      nofile:
+       soft: 20000
+       hard: 40000
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "1g"
+  worker2:
+    # 指定镜像
+    image: ccr.ccs.tencentyun.com/corntab/worker:v1.0.0
+    ulimits:
+      nproc: 65535
+      nofile:
+       soft: 20000
+       hard: 40000
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "1g"
+  worker3:
+    # 指定镜像
+    image: ccr.ccs.tencentyun.com/corntab/worker:v1.0.0
+    ulimits:
+      nproc: 65535
+      nofile:
+       soft: 20000
+       hard: 40000
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "1g"
