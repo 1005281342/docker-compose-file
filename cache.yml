@@ -1,0 +1,20 @@
+# docker-compose.yml文件的版本
+version: "2"
+# 管理的服务
+services:
+  cache:
+    # 指定镜像
+    image: ccr.ccs.tencentyun.com/oyjx/cache_mini:v1.0.0
+    ports:
+    # 端口映射
+    - 8988:8888
+    - 6660:6060
+    ulimits:
+      nproc: 65535
+      nofile:
+       soft: 20000
+       hard: 40000
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "1g"
