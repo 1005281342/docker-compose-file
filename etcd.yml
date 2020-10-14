@@ -20,4 +20,3 @@ services:
       -initial-cluster-state new 
     volumes:
       - "/data/conf/etcd/data:/etcd-data"
-  
