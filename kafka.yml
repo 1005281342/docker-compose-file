@@ -8,8 +8,12 @@ services:
     image: wurstmeister/zookeeper
     ports:
       - "2181:2181"
+    volumes:
+      - your/zookeeper/data:/data
+      - your/zookeeper/datalog:/datalog
   kafka:
-    build: .
+    #build: .
+    image: wurstmeister/kafka
     ports:
       - "9092:9092"
     environment:
@@ -17,4 +21,5 @@ services:
       KAFKA_CREATE_TOPICS: "log:3:1"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
+      - your/kafka/data/:/kafka
       - /var/run/docker.sock:/var/run/docker.sock
